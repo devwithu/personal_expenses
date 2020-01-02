@@ -11,9 +11,20 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Personal Expenses',
       theme: ThemeData(
-        primarySwatch: Colors.purple,
-        accentColor: Colors.amber,
-      ),
+          primarySwatch: Colors.purple,
+          accentColor: Colors.amber,
+          fontFamily: 'QuickSand',
+          textTheme: ThemeData.light().textTheme.copyWith(
+            title: TextStyle(
+              fontFamily: 'OpenSans',
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+            )
+          ),
+          appBarTheme: AppBarTheme(
+            textTheme: ThemeData.light().textTheme.copyWith(
+                title: TextStyle(fontFamily: 'OpenSans', fontSize: 20, fontWeight: FontWeight.bold)),
+          )),
       home: MyHomePage(),
     );
   }
@@ -28,30 +39,28 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
-   final List<Transaction> _userTransactions = [
-    Transaction(
-        id: 't1', 
-        title: 'New Shoes', 
-        amount: 69.99, 
-        date: DateTime.now(),
-    ),
-    Transaction(
-        id: 't2',
-        title: 'Weekly Groceries',
-        amount: 16.97,
-        date: DateTime.now(),
-    ),
+  final List<Transaction> _userTransactions = [
+    // Transaction(
+    //   id: 't1',
+    //   title: 'New Shoes',
+    //   amount: 69.99,
+    //   date: DateTime.now(),
+    // ),
+    // Transaction(
+    //   id: 't2',
+    //   title: 'Weekly Groceries',
+    //   amount: 16.97,
+    //   date: DateTime.now(),
+    // ),
   ];
 
   void _addNewTransaction(String txTitle, double txAmount) {
-    final newTx =
-        Transaction(
-          title: txTitle, 
-          amount: txAmount, 
-          date: DateTime.now(),
-          id: DateTime.now().toString(),
-          );
+    final newTx = Transaction(
+      title: txTitle,
+      amount: txAmount,
+      date: DateTime.now(),
+      id: DateTime.now().toString(),
+    );
     setState(() {
       _userTransactions.add(newTx);
     });
@@ -59,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _startAddNewTransaction(BuildContext ctx) {
     showModalBottomSheet(
-      context: ctx, 
+      context: ctx,
       builder: (_) {
         return GestureDetector(
           onTap: () {},
